@@ -11,7 +11,7 @@ namespace TamagotchiConsoleApp.UI
         public int animalID;
         public PastAnimalScreen(int AnimalID) : base("Past Animal")
         {
-            this.animalID = AnimalID;
+            this.animalID = AnimalID;//check
         }
         public override void Show()
         {

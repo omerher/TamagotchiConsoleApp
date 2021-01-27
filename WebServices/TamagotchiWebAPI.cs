@@ -79,7 +79,8 @@ namespace TamagotchiConsoleApp.WebServices
             }
         }
 
-        public async Task<AnimalDTO> CreateAnimalAsync(string name) {
+        public async Task<AnimalDTO> CreateAnimalAsync(string name)
+        {
             try
             {
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/createAnimal?name={name}");
@@ -92,6 +93,34 @@ namespace TamagotchiConsoleApp.WebServices
                     string content = await response.Content.ReadAsStringAsync();
                     AnimalDTO a = JsonSerializer.Deserialize<AnimalDTO>(content, options);
                     return a;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+
+        public async Task<PlayerDTO> Register(string firstName, string lastName, string email, DateTime birthDate, string username, string pswd)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/register?firstName={firstName}&lastName={lastName}&email={email}&dt={birthDate}&username={username}&password={pswd}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    PlayerDTO p = JsonSerializer.Deserialize<PlayerDTO>(content, options);
+                    return p;
                 }
                 else
                 {

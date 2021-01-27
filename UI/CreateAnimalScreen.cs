@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TamagotchiConsoleApp.DataTransferObjects;
-
+using System.Threading.Tasks;
 
 namespace TamagotchiConsoleApp.UI
 {
@@ -25,23 +25,15 @@ namespace TamagotchiConsoleApp.UI
                 name = Console.ReadLine();
             }
 
-            AnimalDTO a = new AnimalDTO()
-            {
-                AnimalName = name,
-                PlayerId = UIMain.CurrentPlayer.PlayerId
-            };
-            a.Player = UIMain.CurrentPlayer;
-            
-            //** change to use api
-            //UIMain.api.Add(a);
-            //UIMain.api.SaveChanges();
+            Task<AnimalDTO> animal = UIMain.api.CreateAnimalAsync(name);
+            animal.Wait();
+            if (animal != null)
+                Console.WriteLine("Success!");
+            else
+                Console.WriteLine("Failed!");
 
-            //UIMain.CurrentPlayer.ActiveAnimal = a;
-            //UIMain.CurrentPlayer.ActiveAnimalId = a.AnimalId;
-            //UIMain.api.SaveChanges();
-
-            //MainMenu mm = new MainMenu();
-            //mm.Show();
+            MainMenu mm = new MainMenu();
+            mm.Show();
         }
     }
 }

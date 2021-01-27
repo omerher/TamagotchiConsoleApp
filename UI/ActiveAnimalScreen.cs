@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TamagotchiConsoleApp.DataTransferObjects;
 using System.Linq;
-
+using System.Threading.Tasks;
 namespace TamagotchiConsoleApp.UI
 {
     class ActiveAnimalScreen : Screen
@@ -44,14 +44,14 @@ namespace TamagotchiConsoleApp.UI
 
             //making sure animal isnt dead after playing ,if dead move to create animal
             //** needs to be changed to using api
-            //if (TamagotchiContext.CheckIfDead(AAnimal))
-            //{
-            //    Console.WriteLine("Uh oh, your animal is dead!");
-            //    Console.WriteLine("Press C to create a new animal or any other key to go back to the main menu!");
-            //    char c = Console.ReadKey().KeyChar;
-            //    if (c == 'C' || c == 'c')
-            //        new CreateAnimalScreen().Show();
-            //}
+            if (TamagotchiContext.CheckIfDead(AAnimal))
+            {
+               Console.WriteLine("Uh oh, your animal is dead!");
+                Console.WriteLine("Press C to create a new animal or any other key to go back to the main menu!");
+                char c = Console.ReadKey().KeyChar;
+                if (c == 'C' || c == 'c')
+                    new CreateAnimalScreen().Show();
+            }
         }
     }
 }

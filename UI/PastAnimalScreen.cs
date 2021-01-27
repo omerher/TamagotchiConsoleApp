@@ -19,7 +19,7 @@ namespace TamagotchiConsoleApp.UI
             base.Show();
 
 
-            //**AnimalDTO AAnimal = UIMain.api.Animals.Where(a => a.AnimalId == this.animalID).FirstOrDefault(); // searches for the animal
+            
             Task<AnimalDTO> animal = UIMain.api.PastAnimalAsync(animalID);
             animal.Wait();
             //** change to use api

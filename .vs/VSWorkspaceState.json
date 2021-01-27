@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\UI"
+    "\\UI",
+    "\\WebServices"
   ],
-  "SelectedNode": "\\UI\\PastAnimalScreen.cs",
+  "SelectedNode": "\\WebServices\\TamagotchiWebAPI.cs",
   "PreviewInSolutionExplorer": false
 }

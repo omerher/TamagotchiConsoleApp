@@ -7,7 +7,7 @@ using TamagotchiConsoleApp.DataTransferObjects;
 
 
 namespace TamagotchiConsoleApp.UI
-{
+{//
     class Screen
     {
         public string Title { get; set; }

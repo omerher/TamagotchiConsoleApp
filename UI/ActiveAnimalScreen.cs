@@ -27,7 +27,7 @@ namespace TamagotchiConsoleApp.UI
             AnimalDTO AAnimal = UIMain.CurrentPlayer.ActiveAnimal;
             ObjectView showAnimal = new ObjectView("", AAnimal);
             showAnimal.Show();//printing active animal
-
+//
             //choosing to either play 
             Console.WriteLine("Press 1 to play with the animal, 2 to see activities history or any other key to go back!");
             char PscreenChoice = Console.ReadKey().KeyChar;

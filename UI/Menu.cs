@@ -18,7 +18,7 @@ namespace TamagotchiConsoleApp.UI
     }
 
     class Menu : Screen
-    {
+    {//
         //List contains all menu items
         private List<MenuItem> items;
         public Menu(string title) : base(title)

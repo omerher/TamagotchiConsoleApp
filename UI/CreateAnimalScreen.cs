@@ -25,8 +25,9 @@ namespace TamagotchiConsoleApp.UI
                 name = Console.ReadLine();
             }
 
-            Task<AnimalDTO> animal = UIMain.api.CreateAnimalAsync(name);
-            animal.Wait();
+            Task<AnimalDTO> t = UIMain.api.CreateAnimalAsync(name);
+            t.Wait();
+            AnimalDTO animal = t.Result;
             if (animal != null)
                 Console.WriteLine("Success!");
             else

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using TamagotchiConsoleApp.DataTransferObjects;
 using System.Net.Mail;
+using System.Threading.Tasks;
+
 
 namespace TamagotchiConsoleApp.UI
 {
@@ -26,8 +28,8 @@ namespace TamagotchiConsoleApp.UI
                 if (c == 'Y' || c == 'y')
                 {
                     //Save all changes to DB before logging out
-                    UIMain.api.SaveChanges();
-                    UIMain.CurrentPlayer = null;
+                    //UIMain.api.SaveChanges();
+                    //UIMain.CurrentPlayer = null;
                 }
             }
 
@@ -48,7 +50,14 @@ namespace TamagotchiConsoleApp.UI
                     Console.WriteLine($"Please enter your password: ");
                     string password = Console.ReadLine();
 
-                    UIMain.CurrentPlayer = UIMain.api.Login(email, password);
+                    Task<PlayerDTO> t = UIMain.api.LoginAsync( email,password);
+                    t.Wait();
+                    PlayerDTO p = t.Result;
+
+                    if (p != null)
+                    {
+                        UIMain.CurrentPlayer = p;
+                    }
 
                     if (UIMain.CurrentPlayer == null)
                     {
@@ -93,7 +102,14 @@ namespace TamagotchiConsoleApp.UI
                     Console.WriteLine($"Please enter your password: ");
                     string password = Console.ReadLine();
 
-                    UIMain.CurrentPlayer = UIMain.api.Register(firstName, lastName, email, dt, username, password);
+                    Task<PlayerDTO> t = UIMain.api.Register(firstName, lastName, email, dt, username, password);
+                    t.Wait();
+                    PlayerDTO p = t.Result;
+
+                    if (p != null)
+                    {
+                        UIMain.CurrentPlayer = p;
+                    }
 
                     //Checking if the email is valid, If not returns an error messege;
                     if (UIMain.CurrentPlayer == null)

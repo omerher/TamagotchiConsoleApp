@@ -20,10 +20,11 @@ namespace TamagotchiConsoleApp.UI
 
 
             
-            Task<AnimalDTO> animal = UIMain.api.PastAnimalAsync(animalID);
-            animal.Wait();
-            //** change to use api
-            ObjectView showAnimal = new ObjectView("", AAnimal); 
+            Task<AnimalDTO> T = UIMain.api.PastAnimalAsync(animalID);
+            T.Wait();
+            AnimalDTO animal = T.Result;
+
+            ObjectView showAnimal = new ObjectView("", animal); 
 
             showAnimal.Show(); //printing animal
 
@@ -32,7 +33,7 @@ namespace TamagotchiConsoleApp.UI
             char pScreenChoice = Console.ReadKey().KeyChar;
             if (pScreenChoice == 'H' || pScreenChoice == 'h')
             {
-                new ActivitiesHistoryScreen(AAnimal).Show();
+                new ActivitiesHistoryScreen(animal).Show();
             }
         }
     }

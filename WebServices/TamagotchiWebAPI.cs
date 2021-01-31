@@ -160,7 +160,7 @@ namespace TamagotchiConsoleApp.WebServices
 
         public async Task<AnimalDTO> PastAnimalAsync(int AnimalID) 
         {
-            try//
+            try
             {
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/pastAnimal?name={AnimalID}");
                 if (response.IsSuccessStatusCode)
@@ -184,7 +184,5 @@ namespace TamagotchiConsoleApp.WebServices
                 return null;
             }
         }
-
-
     }
 }

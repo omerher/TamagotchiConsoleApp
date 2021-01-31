@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TamagotchiUI.Models;
+using TamagotchiConsoleApp.DataTransferObjects;
 
 namespace TamagotchiConsoleApp.UI
 {
@@ -18,7 +18,7 @@ namespace TamagotchiConsoleApp.UI
     }
 
     class Menu : Screen
-    {
+    {//
         //List contains all menu items
         private List<MenuItem> items;
         public Menu(string title) : base(title)

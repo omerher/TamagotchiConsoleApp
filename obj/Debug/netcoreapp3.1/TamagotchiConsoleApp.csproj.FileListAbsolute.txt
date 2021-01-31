@@ -1,0 +1,4 @@
+C:\Users\douek\Source\Repos\TamagotchiConsoleApp\obj\Debug\netcoreapp3.1\TamagotchiConsoleApp.csprojAssemblyReference.cache
+C:\Users\douek\Source\Repos\TamagotchiConsoleApp\obj\Debug\netcoreapp3.1\TamagotchiConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\douek\Source\Repos\TamagotchiConsoleApp\obj\Debug\netcoreapp3.1\TamagotchiConsoleApp.AssemblyInfoInputs.cache
+C:\Users\douek\Source\Repos\TamagotchiConsoleApp\obj\Debug\netcoreapp3.1\TamagotchiConsoleApp.AssemblyInfo.cs

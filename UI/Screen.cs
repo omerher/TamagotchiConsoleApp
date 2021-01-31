@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TamagotchiUI.Models;
+using TamagotchiConsoleApp.DataTransferObjects;
 
 
 namespace TamagotchiConsoleApp.UI
-{
+{//
     class Screen
     {
         public string Title { get; set; }

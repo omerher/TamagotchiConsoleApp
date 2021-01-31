@@ -133,5 +133,87 @@ namespace TamagotchiConsoleApp.WebServices
                 return null;
             }
         }
+
+        public async Task<List<Object>> ActivitiesHistoryAsync(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/ActivitiesHistory?id={id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Object> o = JsonSerializer.Deserialize<List<Object>>(content, options);
+                    return o;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+        public async Task<AnimalDTO> ActiveAnimalAsync() 
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/activeAnimal");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    AnimalDTO a = JsonSerializer.Deserialize<AnimalDTO>(content, options);
+                    return a;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public async Task<AnimalDTO> PastAnimalAsync(int AnimalID) 
+        {
+            try//
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/pastAnimal?name={AnimalID}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    AnimalDTO a = JsonSerializer.Deserialize<AnimalDTO>(content, options);
+                    return a;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+
     }
 }

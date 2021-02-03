@@ -17,8 +17,6 @@ namespace TamagotchiConsoleApp.UI
         public override void Show()
         {
             base.Show();
-
-
             
             Task<AnimalDTO> T = UIMain.api.PastAnimalAsync(animalID);
             T.Wait();

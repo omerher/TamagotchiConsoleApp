@@ -24,27 +24,27 @@ namespace TamagotchiConsoleApp.UI
                 nAS.Show();//moving to animal creation screen
             }
 
-            AnimalDTO AAnimal = UIMain.CurrentPlayer.ActiveAnimal;
+            Task<AnimalDTO> tt = UIMain.api.ActiveAnimalAsync();
+            tt.Wait();
+
+            AnimalDTO AAnimal = tt.Result;
             ObjectView showAnimal = new ObjectView("", AAnimal);
             showAnimal.Show();//printing active animal
 
             //choosing to either play 
-            Console.WriteLine("Press 1 to play with the animal, 2 to see activities history or any other key to go back!");
+            Console.WriteLine("Press 1 to see activities history or any other key to go back!");
             char PscreenChoice = Console.ReadKey().KeyChar;
-            if (PscreenChoice == '1') //if chose play
-            {
-                PlayScreen ap = new PlayScreen();
-                ap.Show();
-            }
-            else if (PscreenChoice == '2')//if chose to see history
+            if (PscreenChoice == '1')//if chose to see history
             {
                 ActivitiesHistoryScreen aAH = new ActivitiesHistoryScreen(AAnimal);
                 aAH.Show();
             }
 
-            //making sure animal isnt dead after playing ,if dead move to create animal
-            
-            if (TamagotchiContext.CheckIfDead(AAnimal))
+            //making sure animal isnt dead after playing, if dead move to create animal
+            Task<bool> t1 = UIMain.api.CheckIfDeadAsync(AAnimal.AnimalId);
+            t1.Wait();
+            bool isDead = t1.Result;
+            if (isDead)
             {
                Console.WriteLine("Uh oh, your animal is dead!");
                 Console.WriteLine("Press C to create a new animal or any other key to go back to the main menu!");

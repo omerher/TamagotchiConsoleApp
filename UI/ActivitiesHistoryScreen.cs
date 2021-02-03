@@ -20,9 +20,15 @@ namespace TamagotchiConsoleApp.UI
         {
             base.Show();
 
-            Task<List<Object>> ActivitiesHistories = UIMain.api.ActivitiesHistoryAsync(a.AnimalId);
+            Task<List<ActivitiesHistoryDTO>> ActivitiesHistories = UIMain.api.ActivitiesHistoryAsync(a.AnimalId);
             ActivitiesHistories.Wait();
-            List<Object> lst = ActivitiesHistories.Result;
+            List<ActivitiesHistoryDTO> tmp = ActivitiesHistories.Result;
+            List<Object> lst = new List<Object>();
+            foreach (ActivitiesHistoryDTO ah in tmp)
+            {
+                lst.Add((Object)ah);
+            }
+
             List<Object> activities = lst.ToList<Object>();
             ObjectsList list = new ObjectsList("Animals", activities);
             list.Show();

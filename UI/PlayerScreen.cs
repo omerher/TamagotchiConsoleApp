@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using TamagotchiConsoleApp.DataTransferObjects;
-
+using System.Threading.Tasks;
 
 
 namespace TamagotchiConsoleApp.UI
@@ -27,14 +27,15 @@ namespace TamagotchiConsoleApp.UI
                 Console.WriteLine();
                 //Create list to be displayed on screen
                 //Format the desired fields to be shown! (screen is not wide enough to show all)
-                List<Object> animals = (from animalList in UIMain.CurrentPlayer.Animals
-                                        select new
-                                        {
-                                            ID = animalList.AnimalId,
-                                            Name = animalList.AnimalName,
-                                            BirthDate = animalList.CreationDate.Value.ToShortDateString(),
-                                            Weight = $"{animalList.Aweight:F2}"
-                                        }).ToList<Object>();
+                Task<List<AnimalDTO>> t = UIMain.api.GetPlayerAnimalsAsync();
+                t.Wait();
+                List<AnimalDTO> l = t.Result;
+                List<Object> animals = new List<Object>();
+                foreach (AnimalDTO animal in l)
+                {
+                    animals.Add((Object)animal);
+                }
+
                 ObjectsList list = new ObjectsList("Animals", animals);
                 list.Show();
                 Console.WriteLine("\nPress I to see more info about the animal or any other key to go back!");
@@ -43,34 +44,45 @@ namespace TamagotchiConsoleApp.UI
                 {
                     if (animals.Count() == 1)
                     {
-                        AnimalDTO a = UIMain.CurrentPlayer.ActiveAnimal;
-                        //** change to use api
-                        //if (TamagotchiContext.CheckIfDead(a))
-                        //    new PastAnimalScreen(a.AnimalId);
-                        //else
-                        //    new ActiveAnimalScreen().Show();
+                        Task<AnimalDTO> tt = UIMain.api.ActiveAnimalAsync();
+                        tt.Wait();
+
+                        AnimalDTO a = tt.Result;
+                        Task<bool> t1 = UIMain.api.CheckIfDeadAsync(a.AnimalId);
+                        t1.Wait();
+                        bool isDead = t1.Result;
+                        if (isDead)
+                            new PastAnimalScreen(a.AnimalId);
+                        else
+                            new ActiveAnimalScreen().Show();
                     }
                     else
                     {
-                        //** change to use api
-                        //Console.WriteLine("\nEnter the ID of the animal you want to see more info:");
-                        //int aID = int.Parse(Console.ReadLine());
-                        //AnimalDTO a = UIMain.api.GetAnimalByID(aID);
-                        //if (a == null)
-                        //{
-                        //    Console.WriteLine("\nInvalid animal ID! Press any key to go back to the main menu");
-                        //    Console.ReadKey();
-                        //    new MainMenu().Show();
-                        //}
-                        //else
-                        //{
-                        //    if (TamagotchiContext.CheckIfDead(a))
-                        //        new PastAnimalScreen(a.AnimalId).Show();
-                        //    else
-                        //        new ActiveAnimalScreen().Show();
-                        //}
+                        Console.WriteLine("\nEnter the ID of the animal you want to see more info:");
+                        int aID = int.Parse(Console.ReadLine());
+                        Task<AnimalDTO> t2 = UIMain.api.GetAnimalByIdAsync(aID);
+                        t2.Wait();
+                        AnimalDTO a = t2.Result;
+                        if (a == null)
+                        {
+                            Console.WriteLine("\nInvalid animal ID! Press any key to go back to the main menu");
+                            Console.ReadKey();
+                            new MainMenu().Show();
+                        }
+                        else
+                        {
+                            Task<bool> t1 = UIMain.api.CheckIfDeadAsync(a.AnimalId);
+                            t1.Wait();
+                            bool isDead = t1.Result;
+                            if (isDead)
+                            {
+                                PastAnimalScreen screen = new PastAnimalScreen(a.AnimalId);
+                                screen.Show();
+                            }
+                            else
+                                new ActiveAnimalScreen().Show();
+                        }
                     }
-
                 }
 
                 else

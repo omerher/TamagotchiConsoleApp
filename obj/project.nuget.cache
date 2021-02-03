@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "IB7X1lmDsk7yosPQ2CBcwlKow9JUvhWInfWmh4AlD+0KBqEsKfPtehiqRrV47Em1JMsQH66zW9QpqGoOYkwJIg==",
+  "dgSpecHash": "Ld/0t3BD7f4ctiY4U2ZmVwMy+zckpFAQeADSKTpDkcXjDCz6SmMthTA/Osm4sdJRXoYZl4UP5UExl3ukzUigAw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuval\\Source\\Repos\\TamagotchiConsoleApp\\TamagotchiConsoleApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\hersh\\source\\repos\\TamagotchiConsoleApp\\TamagotchiConsoleApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hersh\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.11\\microsoft.aspnetcore.jsonpatch.3.1.11.nupkg.sha512",
+    "C:\\Users\\hersh\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.11\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.11.nupkg.sha512",
+    "C:\\Users\\hersh\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\hersh\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\hersh\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

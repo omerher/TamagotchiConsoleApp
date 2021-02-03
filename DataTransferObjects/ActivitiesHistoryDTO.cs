@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TamagotchiConsoleApp.DataTransferObjects
 {
-    [Table("ActivitiesHistory")]
     public partial class ActivitiesHistoryDTO
     {
         [Key]
@@ -33,17 +32,5 @@ namespace TamagotchiConsoleApp.DataTransferObjects
         [Column("AnimalHealthStatusID")]
         public int? AnimalHealthStatusId { get; set; }
 
-        [ForeignKey(nameof(ActivityId))]
-        [InverseProperty("ActivitiesHistories")]
-        public virtual ActivityDTO Activity { get; set; }
-        [ForeignKey(nameof(AnimalId))]
-        [InverseProperty("ActivitiesHistories")]
-        public virtual AnimalDTO Animal { get; set; }
-        [ForeignKey(nameof(AnimalCycleStatusId))]
-        [InverseProperty(nameof(LifeCycleStatusDTO.ActivitiesHistories))]
-        public virtual LifeCycleStatusDTO AnimalCycleStatus { get; set; }
-        [ForeignKey(nameof(AnimalHealthStatusId))]
-        [InverseProperty(nameof(HealthStatusDTO.ActivitiesHistories))]
-        public virtual HealthStatusDTO AnimalHealthStatus { get; set; }
     }
 }

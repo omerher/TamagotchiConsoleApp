@@ -12,8 +12,6 @@ namespace TamagotchiConsoleApp.UI
         {
             //Build items in main menu!
             AddItem("Player", new PlayerScreen());
-            AddItem("Search Animal", new SearchAnimalScreen());
-            AddItem("Change Credentials", new ChangeCredentialsScreen());
             AddItem("Active Animal", new ActiveAnimalScreen());
         }
     }

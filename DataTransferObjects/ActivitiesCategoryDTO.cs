@@ -11,7 +11,7 @@ namespace TamagotchiConsoleApp.DataTransferObjects
     {
         public ActivitiesCategoryDTO()
         {
-            Activities = new HashSet<ActivityDTO>();
+            
         }
 
         [Key]
@@ -21,7 +21,5 @@ namespace TamagotchiConsoleApp.DataTransferObjects
         [StringLength(20)]
         public string CategoryName { get; set; }
 
-        [InverseProperty(nameof(ActivityDTO.ActivityCategory))]
-        public virtual ICollection<ActivityDTO> Activities { get; set; }
     }
 }

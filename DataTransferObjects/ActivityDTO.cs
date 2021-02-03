@@ -12,7 +12,7 @@ namespace TamagotchiConsoleApp.DataTransferObjects
     {
         public ActivityDTO()
         {
-            ActivitiesHistories = new HashSet<ActivitiesHistoryDTO>();
+            
         }
 
         [Key]
@@ -25,10 +25,5 @@ namespace TamagotchiConsoleApp.DataTransferObjects
         public string ActivityName { get; set; }
         public int ImprovementRate { get; set; }
 
-        [ForeignKey(nameof(ActivityCategoryId))]
-        [InverseProperty(nameof(ActivitiesCategoryDTO.Activities))]
-        public virtual ActivitiesCategoryDTO ActivityCategory { get; set; }
-        [InverseProperty(nameof(ActivitiesHistoryDTO.Activity))]
-        public virtual ICollection<ActivitiesHistoryDTO> ActivitiesHistories { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace TamagotchiConsoleApp.UI
         public void ApplicationStart()
         {
             //Initialize db context and current player
-            api = new TamagotchiWebAPI(@"https://localhost:44311/api");
+            api = new TamagotchiWebAPI(@"https://localhost:44364/api");
             CurrentPlayer = null;
             //Show Screen and start app!
             initialScreen.Show();

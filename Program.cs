@@ -1,4 +1,5 @@
 ﻿using System;
+using TamagotchiConsoleApp.UI;
 
 namespace TamagotchiConsoleApp
 {
@@ -6,7 +7,8 @@ namespace TamagotchiConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            UIMain ui = new UIMain(new LoginRegisterScreen());
+            ui.ApplicationStart();
         }
     }
 }

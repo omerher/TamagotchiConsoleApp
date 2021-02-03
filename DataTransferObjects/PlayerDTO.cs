@@ -9,10 +9,7 @@ namespace TamagotchiConsoleApp.DataTransferObjects
 {
     public partial class PlayerDTO
     {
-        public PlayerDTO()
-        {
-            Animals = new HashSet<AnimalDTO>();
-        }
+        public PlayerDTO() { }
 
         [Key]
         [Column("PlayerID")]
@@ -38,11 +35,5 @@ namespace TamagotchiConsoleApp.DataTransferObjects
         public string Password { get; set; }
         [Column("ActiveAnimalID")]
         public int? ActiveAnimalId { get; set; }
-
-        [ForeignKey(nameof(ActiveAnimalId))]
-        [InverseProperty(nameof(AnimalDTO.PlayerNavigation))]
-        public virtual AnimalDTO ActiveAnimal { get; set; }
-        [InverseProperty(nameof(AnimalDTO.Player))]
-        public virtual ICollection<AnimalDTO> Animals { get; set; }
     }
 }

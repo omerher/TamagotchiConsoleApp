@@ -24,39 +24,11 @@ namespace TamagotchiConsoleApp.WebServices
             this.baseUri = baseUri;
         }
 
-        //public async Task<List<AnimalDTO>> GetPlayerAnimalsAsync()
-        //{
-        //    try
-        //    {
-
-        //        HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/getPlayerAnimals");
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            JsonSerializerOptions options = new JsonSerializerOptions
-        //            {
-        //                PropertyNameCaseInsensitive = true
-        //            };
-        //            string content = await response.Content.ReadAsStringAsync();
-        //            List<AnimalDTO> fList = JsonSerializer.Deserialize<List<AnimalDTO>>(content, options);
-        //            return fList;
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //        return null;
-        //    }
-        //}
-
         public async Task<PlayerDTO> LoginAsync(string email, string pass)
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Login?email={email}&pass={pass}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/login?email={email}&pass={pass}");
                 if (response.IsSuccessStatusCode)
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
@@ -107,7 +79,7 @@ namespace TamagotchiConsoleApp.WebServices
         }
 
 
-        public async Task<PlayerDTO> Register(string firstName, string lastName, string email, DateTime birthDate, string username, string pswd)
+        public async Task<PlayerDTO> RegisterAsync(string firstName, string lastName, string email, DateTime birthDate, string username, string pswd)
         {
             try
             {

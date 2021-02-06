@@ -20,19 +20,6 @@ namespace TamagotchiConsoleApp.UI
             // Clear screen and set title (implemented by Screen Show)
             base.Show();
 
-            //Check if we should logout first
-            if (UIMain.CurrentPlayer != null)
-            {
-                Console.WriteLine($"Currently, {0} is logged in. Press Y to log out or other key to go back to menu!");
-                char c = Console.ReadKey().KeyChar;
-                if (c == 'Y' || c == 'y')
-                {
-                    //Save all changes to DB before logging out
-                    //UIMain.api.SaveChanges();
-                    //UIMain.CurrentPlayer = null;
-                }
-            }
-
             Console.WriteLine("Do you want to login or register? Press 1 to login or 2 to register");
             Char playerLoginOrRegister = Console.ReadKey().KeyChar;
 
@@ -50,7 +37,7 @@ namespace TamagotchiConsoleApp.UI
                     Console.WriteLine($"Please enter your password: ");
                     string password = Console.ReadLine();
 
-                    Task<PlayerDTO> t = UIMain.api.LoginAsync( email,password);
+                    Task<PlayerDTO> t = UIMain.api.LoginAsync(email, password);
                     t.Wait();
                     PlayerDTO p = t.Result;
 
@@ -102,7 +89,7 @@ namespace TamagotchiConsoleApp.UI
                     Console.WriteLine($"Please enter your password: ");
                     string password = Console.ReadLine();
 
-                    Task<PlayerDTO> t = UIMain.api.Register(firstName, lastName, email, dt, username, password);
+                    Task<PlayerDTO> t = UIMain.api.RegisterAsync(firstName, lastName, email, dt, username, password);
                     t.Wait();
                     PlayerDTO p = t.Result;
 
